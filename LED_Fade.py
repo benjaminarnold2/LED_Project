@@ -6,9 +6,24 @@ pi = pigpio.pi()
 red_pin = 17
 green_pin = 22
 blue_pin = 24
- 
 
-print ("Set initial values:")
+
+def colormath(color_setting, new_value, sleepytime):
+
+    if color_setting < new_value:
+        color_setting += 1
+        #print(color_setting)
+        time.sleep(sleepytime)
+        return color_setting
+
+    if color_setting > new_value:
+        color_setting -= 1
+        #print(color_setting)
+        time.sleep(sleepytime)
+        return color_setting
+
+
+print("Set initial values:")
 
 old_red_color = input("Set value for red:")
 old_blue_color = input("Set value for blue:")
@@ -22,8 +37,7 @@ try:
 
 except ValueError:
 
-        print ("I don't think that you gave me good numbers.")
-
+    print("I don't think that you gave me good numbers.")
 
 pi.set_PWM_dutycycle(red_pin, old_red_color)
 pi.set_PWM_dutycycle(blue_pin, old_blue_color)
@@ -41,48 +55,21 @@ try:
 
 except ValueError:
 
-    print ("I don't think that you gave me good numbers.")
+    print("I don't think that you gave me good numbers.")
 
 count = 0
 
 sleeptime = .003
 
 while count < 256:
-    
-    if old_red_color < red_color:
-        old_red_color += 1
-        print(old_red_color)
-        time.sleep(sleeptime)
-        pi.set_PWM_dutycycle(red_pin, old_red_color)
-        
-    if old_red_color > red_color:
-        old_red_color -= 1
-        print (old_red_color)
-        time.sleep(sleeptime)
-        pi.set_PWM_dutycycle(red_pin, old_red_color)
 
-    if old_blue_color < blue_color:
-        old_blue_color += 1
-        print (old_blue_color)
-        time.sleep(sleeptime)
-        pi.set_PWM_dutycycle(blue_pin, old_blue_color)
+    old_red_color = colormath(old_red_color, red_color, sleeptime)
+    pi.set_PWM_dutycycle(red_pin, old_red_color)
 
-    if old_blue_color > blue_color:
-        old_blue_color -= 1
-        print (old_blue_color)
-        time.sleep(sleeptime)
-        pi.set_PWM_dutycycle(blue_pin, old_blue_color)
+    old_blue_color = colormath(old_blue_color, blue_color, sleeptime)
+    pi.set_PWM_dutycycle(blue_pin, old_blue_color)
 
-    if old_green_color < green_color:
-        old_green_color += 1
-        print (old_green_color)
-        time.sleep(sleeptime)
-        pi.set_PWM_dutycycle(green_pin, old_green_color)
-
-    if old_green_color > green_color:
-        old_green_color -= 1
-        print (old_green_color)
-        time.sleep(sleeptime)
-        pi.set_PWM_dutycycle(green_pin, old_green_color)
+    old_green_color = colormath(old_green_color, green_color, sleeptime)
+    pi.set_PWM_dutycycle(green_pin, old_green_color)
 
     count += 1
