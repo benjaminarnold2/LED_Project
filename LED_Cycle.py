@@ -7,13 +7,12 @@ red_pin = 17
 green_pin = 22
 blue_pin = 24
 
-sleeptime = .003
-
 
 def colormath(color_setting, new_value, sleepytime):
 
     color_setting = int(color_setting)
     new_value = int(new_value)
+    sleepytime = float(sleepytime)
 
     if color_setting < new_value:
         color_setting += 1
@@ -30,6 +29,7 @@ def colormath(color_setting, new_value, sleepytime):
     else:
 
         return int(color_setting)
+
 
 def colorloop(old_red_color, old_blue_color, old_green_color, red_color,
               blue_color, green_color, sleeptime):
@@ -54,9 +54,10 @@ def colorloop(old_red_color, old_blue_color, old_green_color, red_color,
 
 print("Set first color values:")
 
-one_red_color = input("Set value for red:")
-one_blue_color = input("Set value for blue:")
-one_green_color = input("Set value for green:")
+one_red_color = input("Set value for red: ")
+one_green_color = input("Set value for green: ")
+one_blue_color = input("Set value for blue: ")
+
 
 pi.set_PWM_dutycycle(red_pin, one_red_color)
 pi.set_PWM_dutycycle(blue_pin, one_blue_color)
@@ -64,15 +65,19 @@ pi.set_PWM_dutycycle(green_pin, one_green_color)
 
 print("Set second color values:")
 
-two_red_color = input("Set value for red:")
-two_blue_color = input("Set value for blue:")
-two_green_color = input("Set value for green:")
+two_red_color = input("Set value for red: ")
+two_green_color = input("Set value for green: ")
+two_blue_color = input("Set value for blue: ")
+
 
 print("Set third color values:")
 
-three_red_color = input("Set value for red:")
-three_blue_color = input("Set value for blue:")
-three_green_color = input("Set value for green:")
+three_red_color = input("Set value for red: ")
+three_green_color = input("Set value for green: ")
+three_blue_color = input("Set value for blue: ")
+
+
+sleeptime = input("Set fade time as .xx ")
 
 while True:
 
