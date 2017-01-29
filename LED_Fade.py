@@ -64,12 +64,15 @@ sleeptime = .003
 while count < 256:
 
     old_red_color = colormath(old_red_color, red_color, sleeptime)
+    old_red_color = int(old_red_color)
     pi.set_PWM_dutycycle(red_pin, old_red_color)
 
     old_blue_color = colormath(old_blue_color, blue_color, sleeptime)
+    old_blue_color = int(old_blue_color)
     pi.set_PWM_dutycycle(blue_pin, old_blue_color)
 
     old_green_color = colormath(old_green_color, green_color, sleeptime)
+    old_green_color = int(old_green_color)
     pi.set_PWM_dutycycle(green_pin, old_green_color)
 
     count += 1
