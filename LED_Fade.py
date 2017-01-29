@@ -20,7 +20,7 @@ def colormath(color_setting, new_value, sleepytime):
         color_setting -= 1
         #print(color_setting)
         time.sleep(sleepytime)
-        return color_setting
+        return int(color_setting)
 
 
 print("Set initial values:")
@@ -61,9 +61,10 @@ count = 0
 
 sleeptime = .003
 
-while count < 256:
+while count < 255:
 
     old_red_color = colormath(old_red_color, red_color, sleeptime)
+    print (type(old_red_color))
     old_red_color = int(old_red_color)
     pi.set_PWM_dutycycle(red_pin, old_red_color)
 
